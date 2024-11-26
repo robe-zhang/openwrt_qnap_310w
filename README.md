@@ -53,7 +53,8 @@ mtd -n write /tmp/<10G_phy_firmware> mtd10
 mtd erase /dev/mtd11  
 mtd -n write /tmp/<10G_phy_firmware> mtd11  
   
-# 后续更新 openwrt 系统，直接在 openwrt 的 luci 界面中 system >> backup/flash firmware 中的 flash new firmware image 中更新  
+# 后续更新 openwrt 系统，启动 openwrt 在 luci 界面中中更新  
+# 更新 原生系统，启动原生系统 界面中中更新  
   
 # openwrt_qnap_310w 双系统切换命令：  
 openwrt_qnap_310w 路由器本身有两个系统，上面的刷机方法，把 openwrt 刷在 0 中，原生系统保留没动在 1 中，所以 openwrt_qnap_310w 路由器可以双系统启动
