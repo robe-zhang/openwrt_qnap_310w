@@ -4,6 +4,8 @@
 下载 -squashfs-sysupgrade.bin 结尾的文件  
 复制到 ubuntu 系统下，运行命令：binwalk -e openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin  
 得到 kernel 和 root 两个文件。稍后把这两文件写入 qnap-310w 分区，刷机完成  
+#### 不方便获取 kernel 和 root 的网友，可以用本 repo 中的 kernel 和 root，是从 openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin 提取的：  
+#### _openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin.extracted\sysupgrade-qnap_301w  
 ## 2，打开 ssh：  
 qnap-310w 原生的系统，开机状态下，长按 wps 按键，直到听到 di-di 两声，开启成功  
 ## 3，ssh 登录：端口号不是常用的 22，是 22200  
