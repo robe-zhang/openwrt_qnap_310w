@@ -4,8 +4,8 @@
 下载 -squashfs-sysupgrade.bin 结尾的文件  
 复制到 ubuntu 系统下，运行命令：binwalk -e openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin  
 得到 kernel 和 root 两个文件。稍后把这两文件写入 qnap-310w 分区，刷机完成  
-#### 不方便获取 kernel 和 root 的网友，可以用本 repo 中的 kernel 和 root，是从 openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin 提取的：  
-#### _openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin.extracted\sysupgrade-qnap_301w  
+#### 不方便获取 kernel 和 root 的网友，可以用本 repo 中的 kernel 和 root，是从 openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin 提取的：_openwrt-23.05.5-ipq807x-generic-qnap_301w-squashfs-sysupgrade.bin.extracted\sysupgrade-qnap_301w  
+本 kernel 和 root 仅仅作为过渡，升级到 openwrt 后，进 luci 界面还能刷任意版本  
 ## 2，打开 ssh：  
 qnap-310w 原生的系统，开机状态下，长按 wps 按键，直到听到 di-di 两声，开启成功  
 ## 3，ssh 登录：端口号不是常用的 22，是 22200  
@@ -21,8 +21,8 @@ sudo reboot
 sudo fw_printenv -n current_entry  
 现在显示 1。开始传输文件刷机  
 ## 5，传输文件：  
-scp -P 22200 kernel admin@192.168.100.1:/tmp/
-scp -P 22200 root admin@192.168.100.1:/tmp/  
+scp -P 22200 kernel admin@192.168.100.1:/tmp/  
+scp -P 22200 root admin@192.168.100.1:/tmp/   
 把 kernel root 文件传输到 qnap-310w 的 /tmp 目录下  
 ## 6，刷机：  
 sudo dd if=/tmp/kernel of=/dev/mmcblk0p1  
