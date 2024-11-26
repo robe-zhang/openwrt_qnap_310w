@@ -45,15 +45,25 @@ cat /proc/mtd|grep "0:ethphyfw"
 dd if=/dev/mtd10 of=/tmp/ethphyfw.backup  
 把 ethphyfw.backup 文件复制到电脑中，保存，备份  
 ## 2，下载最新 10G 网口 phy 芯片固件    
-稍后补充  
+1，可以从他人的 github 仓库获取：  
+https://github.com/0x5826/Marvel-AQR-FW  
+2，从本仓库 Marvel-AQR-FW 目录(来自于上面GitHub仓库)中下载：  
+AQR-G4_v5.4.C-AQR_CIG_WF-1945_0x0_ID44778_VER1630.cld  
+AQR-G4_v5.4.C-AQR_CIG_WF-1945_0x8_ID44776_VER1630.cld  
 ## 3，更新10G 网口 phy 芯片固件  
 mtd erase /dev/mtd_NUM  
 mtd -n write /tmp/<10G_phy_firmware> mtd_NUM  
 比如上面显示 10G 网口 phy 芯片固件，所在的分区是 mtd10 和 mtd11  
+擦除 mtd10 内容，写入新固件
 mtd erase /dev/mtd10  
-mtd -n write /tmp/<10G_phy_firmware> mtd10  
+mtd -n write /tmp/AQR-G4_v5.4.C-AQR_CIG_WF-1945_0x0_ID44778_VER1630.cld mtd10  
+擦除 mtd11 内容，写入新固件
 mtd erase /dev/mtd11  
-mtd -n write /tmp/<10G_phy_firmware> mtd11  
+mtd -n write /tmp/AQR-G4_v5.4.C-AQR_CIG_WF-1945_0x8_ID44776_VER1630.cld  mtd11  
+## 4，重启路由器，检查新固件是否生效  
+运行命令：dmesg | grep NVMEM ， 找到以下内容，新固件生效  
+[    1.830094] Aquantia AQR113C 90000.mdio-1:00: loading firmware version 'v5.4.C CIG WF-1945_0x0 060120 02:47:48' from 'NVMEM'  
+[   13.369392] Aquantia AQR113C 90000.mdio-1:08: loading firmware version 'v5.4.C CIG WF-1945_0x8 060120 02:47:48' from 'NVMEM'  
   
 # 后续更新 openwrt 系统，启动 openwrt 在 luci 界面中中更新  
 # 更新 原生系统，启动原生系统 界面中中更新  
